@@ -16,5 +16,6 @@
 
 - created an server
 - linked mongo DB with the backend
+- Error handing 
   *Tech Stack*
 - Mongo DB, Express JS, Nodemon
