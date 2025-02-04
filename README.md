@@ -24,3 +24,4 @@
 
 - created an file inside model folder
 - used Mongoose,bcrypt and jsonwebtoken
+- Multer created
