@@ -2,16 +2,18 @@ import { useState } from 'react'
 
 import './App.css'
 import { Routes,Route } from 'react-router-dom'
-import { LoginPage } from './Routes/Rotes'
-
+import { Loginpage } from './routes/routes'
+import Home from './page/home'
+import Signup from './component/signup/signup'
 function App() {
 
   return (
     <>
     <Routes>
-      <Route path='/login' element={<LoginPage/>}></Route>
-
-    </Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/login' element={<Loginpage/>}/>
+      <Route path='/signup' element={<Signup/>}/>
+      </Routes>
     </>
   )
 }

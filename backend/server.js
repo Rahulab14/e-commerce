@@ -1,8 +1,8 @@
 const app=require('./app');
 const connectDB=require('./db/db');
 
-process.on('uncaughtException',(error)=>{
-    console.log('Server shutting down ${err.message}');
+process.on('uncaughtException',()=>{
+    console.log(`Server shutting down ${error.message}`);
     process.exit(1);
 })
 if (process.env.NODE_ENV !== 'production') {
