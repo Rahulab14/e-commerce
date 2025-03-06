@@ -52,6 +52,12 @@
 - Created the form for products
 - This form will take multiple product images images as input
 
+## Milestone 8
+- Designed a reusable card component with props for product details (e.g., name, image, price).
+- Set up a grid layout or flexbox for displaying multiple cards neatly.
+## Milestone 9
+- Created the form for products
+- This form will take multiple product images images as input
 ## Milestone 10
 - Defined the structure of product data (e.g., name, description, price, image URL) using Mongoose. -Ensure each field has proper validation (e.g., required fields, correct data types).
 - Built a POST endpoint to receive product data.
@@ -78,3 +84,4 @@
 ## Milestone 15
 - Create a new navbar to link other required pages related logo or name.
 - Created navbar and made it responsive to all screen.
+
