@@ -85,3 +85,13 @@
 - Create a new navbar to link other required pages related logo or name.
 - Created navbar and made it responsive to all screen.
 
+## Milestone 16
+- Create a new page that display all product data.
+
+## Milestone 17
+- Wrote the cartv schema to store product
+- Wrote an endpoint to store receive and store product details in cart
+
+## Milestone 18
+- Created an Backend endpoint for cart page
+- Written an endpoint to get products inside cart for user ..
