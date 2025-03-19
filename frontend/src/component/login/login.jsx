@@ -1,86 +1,103 @@
-import React, { useState } from 'react'
-import { IoMailSharp } from 'react-icons/io5';  // Correct import
-import { LuEye, LuEyeClosed } from 'react-icons/lu';
-import { Link, useNavigate } from 'react-router-dom';
-import server from '../../server';
-import { Navigate } from 'react-router-dom';
+import React from 'react'
+import { useState , useEffect} from 'react'
+import { FaUser } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { IoEye } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import server from '../../server'
 
-function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [visible, setVisible] = useState(false);
-    const navigate = useNavigate()
-    const handlePasswordVisibilityToggle = () => {
-        setVisible(!visible);
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+
+function Signup() {
+  const[name,setName]= useState('')
+  const[email,setEmail]= useState('')
+  const [password,setPassword] = useState('')
+  const [visible,setVisible]=useState(false)
+  const[avatar,setAvatar]=useState('')
+  const[msg,setMsg]=useState('')
+  const[error,setError]=useState(false)
+
+  useEffect(() => {
+    return () => {
+      toast.dismiss();  // ✅ Clears all toasts on unmount
     };
+  }, []);
+  
 
-    const handlesubmit=async(e)=>{
-        e.preventdefault()
-        await axios.post(`${server}/login-page`,{email,password})
-        .then(res=>{
-            console.log('login success')
-            navigate('/')}).catch((e)=>{
-                console.log(e.message)
-            })
-    }
-    return (
-        <div className='h-screen flex justify-center items-center bg-gray-100'>
-            <div className='box-border flex flex-col bg-slate-200 h-96 w-96 shadow-xl rounded-xl'>
-                <div>
-                    <h1 className='text-center text-2xl font-bold'>User Login</h1>
-                </div>
-                <div className='w-full flex justify-center items-center'>
-                    <form className='w-full flex flex-col justify-center items-center mt-4'>
-                        <div className='flex rounded-lg bg-sky-100 shadow-lg w-full h-10 justify-between items-center mb-4'>
-                            <input
-                                className='w-full focus:outline-none text-center py-2 px-4'
-                                type="email"
-                                required
-                                autoComplete='email'
-                                name='email'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder='Email'
-                            />
-                            <IoMailSharp className='mr-4 h-6 w-6 text-gray-500'/>
-                        </div>  
+   const handleInput=(e)=>{
+    const file = e.target.files[0]
+    setAvatar(file)
+   } 
 
-                        <div className='flex rounded-lg bg-sky-100 shadow-lg w-full h-10 justify-between items-center mb-4'>
-                            <input
-                                className='w-full focus:outline-none text-center py-2 px-4'
-                                type={visible ? 'text' : 'password'}
-                                required
-                                autoComplete='password'
-                                name='password'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder='Password'
-                            />
-                            {visible 
-                                ? <LuEye className='mr-4 h-6 w-6 text-gray-500' onClick={handlePasswordVisibilityToggle} />
-                                : <LuEyeClosed className='mr-4 h-6 w-6 text-gray-500' onClick={handlePasswordVisibilityToggle} />
-                            }
-                        </div>
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+   
+     
+    const config = {headers:{"Content-type":"multipart/form-data"}}
+const newForm = new FormData()
+newForm.append("file",avatar)
+newForm.append("name",name)
+newForm.append("email",email)
+newForm.append("password",password)
 
-                        <div className='w-full flex mt-2 justify-center items-center'>
-                            <input className='ml-2' type="checkbox" />
-                            <label className='text-xs ml-2'>Remember me</label>
-                            <a className='ml-6 text-xs text-sky-500' href='#'>Forgot Password?</a>
-                        </div>
-
-                        <button type='submit' className='w-full bg-cyan-400 text-center text-xl mt-5 rounded-lg h-10'>
-                            Submit
-                        </button>
-
-                        <div className='flex w-full mt-3 justify-center'>
-                            <h6 className='text-xs'>Don't have an account?</h6>
-                            <Link className='ml-3 text-xs text-sky-500' to="/signup">Sign-up</Link>
-                        </div>
-                    </form>
-                </div>
-            </div>
+axios.post(`${server}/create-user`,newForm,config).then((res)=>{
+  console.log(res)
+  toast.success(res.data.message)
+  setEmail('')
+  setName('')
+  setPassword('')
+  setAvatar('')
+  //setMsg(res.data.message)  
+}).catch((err)=>{
+  console.log(err)
+  toast.error(err.response.data.message
+  
+    )
+  //setMsg(err.response.data.message)
+  setError(true)
+})
+  }
+  return (
+    <div className='flex flex-col box-border h-screen justify-center items-center bg-gray-100'>
+     
+      <div className='flex flex-col w-109 h-109   rounded-xl shadow-xl shawdow-black-600 bg-sky-100'>
+        <div>
+        <h1 className='text-center mt-5 text-2xl font-bold'>Create Account</h1>
         </div>
-    );
+        <div className='flex justify-center items-center mt-5'>
+           <form className='flex flex-col justify-center items-center w-98 ' onSubmit={handleSubmit}>
+            <div className='flex w-full h-8 mt-5 rounded-lg shadow-lg justify-center items-center bg-slate-200'>
+              <input placeholder='user name' name='name' type='text' required value={name} onChange={(e)=>setName(e.target.value)}className='w-full focus:outline-none ml-5 text-xl'/>
+              <FaUser className='mr-5 h-8 w-8'/>
+            </div>
+            <div className='flex w-full h-8 mt-5 rounded-lg shadow-lg justify-center items-center  bg-slate-200'>
+              <input placeholder='email' type='text' name='email' required value={email} onChange={(e)=>setEmail(e.target.value)}className='w-full focus:outline-none ml-5 text-xl'/>
+              <MdEmail className='mr-5 h-8 w-8'/>
+            </div>
+            <div  className='flex w-full h-8 mt-5 rounded-lg shadow-lg justify-center items-center  bg-slate-200'>
+              <input type={visible?"text":"password"} name='password' placeholder='password' required value={password} onChange={(e)=>setPassword(e.target.value)} className='w-full focus:outline-none ml-5 text-xl '/>
+           {visible? (<IoEye onClick={()=>setVisible(false)} className='mr-5 h-8 w-8'/>): (<IoEyeOffOutline onClick={()=>setVisible(true)} className='mr-5 h-8 w-8'/>)}
+            </div>
+               <div className='flex flex-col w-full h-15 mt-5 rounded-lg shadow-lg justify-center items-center  bg-slate-200'>
+               <label>set your profile pic</label>
+                <input name='avatar' type='file' accept='.jpg, .png, .jpeg' onChange={handleInput} className='bg-amber-200'/>
+               </div>
+             <button className='mt-5 w-full bg-blue-300 p-2 rounded-lg shadow-lg' type='submit'>submit</button>
+             <div className='mt-1 flex '>
+                <p className='text-sm'>already have account</p>
+                <Link className='text-sm ml-2 text-blue-500' to='/login'>login</Link>
+
+             </div>
+           </form>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default Login;
+export default Signup
