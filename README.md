@@ -102,3 +102,7 @@
 ## Milestone 20
 - Created an backend endpoint that sends all the user data using mail.
 - Created an frontend profile page that displays all the user data.
+
+
+## Milestone 21
+- Created an frontend form that takes address.
