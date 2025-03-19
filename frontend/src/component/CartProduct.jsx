@@ -31,7 +31,7 @@ export default function CartProduct({ _id, name, images, quantity, price }) {
 const updateQuantityVal = (quantity) => {
   axios
     .put("http://localhost:5000/api/product/cartproduct/quantity", {
-      email: "sankamithra1614@gmail.com",
+      email: "stylux1337@gmail.com",
       productId: _id,
       quantity,
     })

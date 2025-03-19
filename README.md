@@ -95,3 +95,10 @@
 ## Milestone 18
 - Created an Backend endpoint for cart page
 - Written an endpoint to get products inside cart for user ..
+
+## Milestone 19
+- Created an cart page that display the products inside cart using endpoint that was build in previous milestone.
+
+## Milestone 20
+- Created an backend endpoint that sends all the user data using mail.
+- Created an frontend profile page that displays all the user data.
