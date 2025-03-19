@@ -101,6 +101,10 @@
 
 ## Milestone 20
 - Created an backend endpoint that sends all the user data using mail.
+
+
+## Milestone 22
+- Created an backend endpoint that stores the address inside user profile in the database.
 - Created an frontend profile page that displays all the user data.
 
 
