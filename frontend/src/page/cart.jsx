@@ -10,7 +10,7 @@ const Cart = () => {
 
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/api/product/cartProduct?email=${'sankamithra1614@gmail.com'}`)
+        .get(`http://localhost:5000/api/product/cartProduct?email=${'stylux1337@gmail.com'}`)
         .then((res) => {
             console.log("Products fetched:", res);
           setProducts(res.data.cart.map(product => ({ quantity: product['quantity'], ...product['productId'] })));
