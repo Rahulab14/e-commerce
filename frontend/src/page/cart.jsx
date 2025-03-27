@@ -2,15 +2,18 @@ import CartProduct from '../components/CartProduct'
 import Nav from '../components/nav';
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-
+const navigate= useNavigate()
     const [products, setProducts] = useState([]);
-
+    const handlePlaceOrder = () => {
+        navigate('/select-address'); // Navigate to the Select Address page
+      };
 
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/api/product/cartProduct?email=${'stylux1337@gmail.com'}`)
+        .get(`http://localhost:5000/api/product/cartProduct?email=${'sankamithra1614@gmail.com'}`)
         .then((res) => {
             console.log("Products fetched:", res);
           setProducts(res.data.cart.map(product => ({ quantity: product['quantity'], ...product['productId'] })));
@@ -37,6 +40,14 @@ const Cart = () => {
                             ))
                         }
                     </div>
+                    <div className='w-full p-4 flex justify-end'>
+            <button
+              onClick={()=>navigate('/select-address')}
+              className='bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600'
+            >
+              Place Order
+            </button>
+          </div>
                 </div>
             </div>
         </div>
