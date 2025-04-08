@@ -114,3 +114,18 @@
 
 ## Milestone 24
 - Created an order conformation page.
+
+## Milestone 25
+- Created an backend endpoint that helps in placing the order.
+
+## Milestone 26
+- Created an backend endpoint that helps in getting all the orders of the user.
+
+## Milestone 27
+- Created an frontend page that will display all the user orders.
+
+## Milestone 28
+- In this added cancel button in my-orders and created an backend endpoint for cancel order.
+
+## Milestone 29
+- Added online payment gateway to the application using Paypal api.
