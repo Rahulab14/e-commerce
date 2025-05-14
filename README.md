@@ -1,4 +1,4 @@
-﻿# e-commerce
+﻿# E-commerce
 ## Milestone 1
 
 - While doing this e-commerce project i have come to know about:
